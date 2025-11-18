@@ -1,9 +1,8 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState, useCallback } from 'react'
 
 const AuthContext = createContext(null)
 const AUTH_STORAGE_KEY = 'react-demo-auth'
 
-// 管理登录状态 + 本地持久化
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {
     const stored = localStorage.getItem(AUTH_STORAGE_KEY)
@@ -18,8 +17,7 @@ export function AuthProvider({ children }) {
     }
   }, [user])
 
-  // 模拟接口延迟，校验固定账号
-  const login = async ({ email, password }) => {
+  const login = useCallback(async ({ email, password }) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (email === 'admin@example.com' && password === 'admin123') {
@@ -31,23 +29,23 @@ export function AuthProvider({ children }) {
         }
       }, 600)
     })
-  }
+  }, [])
 
-  const logout = () => setUser(null)
+  const logout = useCallback(() => setUser(null), [])
 
   const value = useMemo(
     () => ({
       user,
+      isAuthenticated: Boolean(user),
       login,
       logout,
     }),
-    [user],
+    [user, login, logout],
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 
-// 自定义 Hook：隔离 useContext 细节
 export function useAuth() {
   const context = useContext(AuthContext)
   if (!context) {
@@ -55,4 +53,3 @@ export function useAuth() {
   }
   return context
 }
-

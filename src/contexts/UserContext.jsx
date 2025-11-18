@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState, useCallback } from 'react'
 import {
   createUser,
   getUserById,
@@ -8,14 +8,12 @@ import {
 
 const UserContext = createContext(null)
 
-// 统一用户数据流转、状态与操作
 export function UserProvider({ children }) {
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
-  // 列表页与其它页面共享的刷新逻辑
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback(async () => {
     setLoading(true)
     setError(null)
     try {
@@ -26,14 +24,13 @@ export function UserProvider({ children }) {
     } finally {
       setLoading(false)
     }
-  }
+  }, [])
 
   useEffect(() => {
     fetchUsers()
-  }, [])
+  }, [fetchUsers])
 
-  // 根据是否有 id 自动选择创建或更新
-  const upsertUser = async (payload) => {
+  const upsertUser = useCallback(async (payload) => {
     setLoading(true)
     setError(null)
     try {
@@ -51,7 +48,7 @@ export function UserProvider({ children }) {
     } finally {
       setLoading(false)
     }
-  }
+  }, [fetchUsers])
 
   const value = useMemo(
     () => ({
@@ -62,13 +59,12 @@ export function UserProvider({ children }) {
       upsertUser,
       getUserById,
     }),
-    [users, loading, error, fetchUsers, upsertUser, getUserById],
+    [users, loading, error, fetchUsers, upsertUser],
   )
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>
 }
 
-// 自定义 Hook：提供用户数据上下文
 export function useUsers() {
   const context = useContext(UserContext)
   if (!context) {
