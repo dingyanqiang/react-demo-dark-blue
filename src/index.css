@@ -1,0 +1,284 @@
+:root {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #101828;
+  background-color: #f5f7fb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  padding: 1rem 2rem;
+  background: #ffffff;
+  border-bottom: 1px solid #e4e7ec;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand__title {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.brand__sub {
+  font-size: 0.8rem;
+  color: #667085;
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.nav-link {
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  color: #475467;
+}
+
+.nav-link--active {
+  background: #eef2ff;
+  color: #4338ca;
+}
+
+.user-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #475467;
+}
+
+.app-main {
+  flex: 1;
+  padding: 1.5rem;
+  background: #f5f7fb;
+}
+
+.panel {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
+}
+
+.panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.panel__header h2 {
+  margin: 0;
+}
+
+.helper-text {
+  margin: 0.25rem 0 0;
+  color: #667085;
+  font-size: 0.9rem;
+}
+
+.panel__actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.search-input {
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #d0d5dd;
+  min-width: 200px;
+}
+
+.table-wrapper {
+  margin-top: 1rem;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #f0f2f5;
+  text-align: left;
+}
+
+th {
+  color: #475467;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.table-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.empty-state {
+  text-align: center;
+  color: #667085;
+}
+
+.status {
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+}
+
+.status--success {
+  background: #ecfdf3;
+  color: #027a48;
+}
+
+.status--inactive {
+  background: #fef3f2;
+  color: #b42318;
+}
+
+.panel button,
+.panel .primary-btn,
+.panel .ghost-btn {
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+
+.primary-btn {
+  background: #4338ca;
+  color: #fff;
+}
+
+.ghost-btn {
+  background: transparent;
+  border-color: #d0d5dd;
+  color: #475467;
+}
+
+.error-text {
+  color: #b42318;
+  background: #fef3f2;
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-top: 1rem;
+}
+
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top, #eef2ff, #e0e7ff 40%, #f8fafc);
+  padding: 1rem;
+}
+
+.auth-wrapper .panel {
+  width: min(400px, 100%);
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+  color: #344054;
+  margin-top: 1rem;
+}
+
+input,
+select {
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #d0d5dd;
+  font: inherit;
+}
+
+.panel form button {
+  width: 100%;
+  margin-top: 1.25rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.detail-grid {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.detail-grid div {
+  padding: 1rem;
+  border: 1px solid #f0f2f5;
+  border-radius: 12px;
+}
+
+dt {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #98a2b3;
+}
+
+dd {
+  margin: 0.35rem 0 0;
+  font-weight: 600;
+  color: #1d2939;
+}
