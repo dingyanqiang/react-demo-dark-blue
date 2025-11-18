@@ -39,7 +39,7 @@ function LoginPage() {
 
   return (
     <div className="auth-wrapper">
-      <form className="panel" onSubmit={handleSubmit}>
+      <form className="panel auth-form" onSubmit={handleSubmit}>
         <h1>后台登录</h1>
         <p className="helper-text">体验账号已自动填入，可直接登录</p>
         <label>
