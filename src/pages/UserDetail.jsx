@@ -13,7 +13,6 @@ function UserDetail() {
 
   // 拉取详情数据，可复用列表的 getUserById
   useEffect(() => {
-    setLoading(true)
     getUserById(userId)
       .then((data) => setUser(data))
       .catch((err) => setError(err.message))

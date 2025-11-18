@@ -62,7 +62,7 @@ export function UserProvider({ children }) {
       upsertUser,
       getUserById,
     }),
-    [users, loading, error],
+    [users, loading, error, fetchUsers, upsertUser, getUserById],
   )
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>
